@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Pretendard';
+  src: url(src/assets/fonts/Pretendard.ttf);
+}
+
+:root {
+  --Lightmode-Grey: rgba(64, 64, 64, 1);
+}
+
+body {
+  font-family: 'Pretendard';
+}
