@@ -22,10 +22,14 @@
 }
 
 .input-box input {
+  flex: 1;
   outline: none;
 
+  box-sizing: border-box;
   border-radius: 6px;
   border: 1px solid var(--Lightmode-Grey3);
+  padding: 8px 16px;
+  height: 44px;
 
   color: var(--Lightmode-Grey);
   font-family: Inter;
@@ -36,6 +40,10 @@
 
 .input-box input::placeholder {
   color: var(--Lightmode-Grey2);
+}
+
+.input-box .button {
+  width: 110px;
 }
 
 .input-box .message {
