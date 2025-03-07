@@ -1,12 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @font-face {
   font-family: 'Pretendard';
   src: url(src/assets/fonts/Pretendard.ttf);
 }
 
 :root {
+  --White: rgba(255, 255, 255, 1);
   --Lightmode-Grey: rgba(64, 64, 64, 1);
+  --Lightmode-Grey2: rgba(138, 146, 166, 1);
+  --Lightmode-Grey3: rgba(238, 238, 238, 1);
+  --Primary: rgba(0, 132, 255, 1);
+  --Second: rgba(0, 132, 255, 0.10);
+  --Error: rgba(255, 84, 64, 1);
 }
 
 body {
   font-family: 'Pretendard';
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 6px;
+  width: 92px;
+  height: 44px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+
+  cursor: pointer;
+}
+
+.button.disable {
+  background-color: var(--Lightmode-Grey3);
+
+  color: var(--Lightmode-Grey2);
+
+  cursor: default;
+}
+
+.button.second {
+  background-color: var(--Second);
+
+  color: var(--Primary);
+}
+
+.button.primary {
+  background-color: var(--Primary);
+
+  color: var(--White);
 }

@@ -1,0 +1,53 @@
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-box > .label {
+  color: var(--Lightmode-Grey2);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.input-box > .input-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-box .input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.input-box input {
+  outline: none;
+
+  border-radius: 6px;
+  border: 1px solid var(--Lightmode-Grey3);
+
+  color: var(--Lightmode-Grey);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+}
+
+.input-box input::placeholder {
+  color: var(--Lightmode-Grey2);
+}
+
+.input-box .message {
+  height: 16px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.input-box .message.success {
+  color: var(--Primary);
+}
+
+.input-box .message.error {
+  color: var(--Error);
+}
