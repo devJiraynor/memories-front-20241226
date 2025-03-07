@@ -1,0 +1,28 @@
+#auth-wrapper {
+  display: flex;
+}
+
+#auth-wrapper .auth-side-image {
+  width: 830px;
+  min-width: 830px;
+  min-height: calc(1024px - 80px);
+  height: 100vh;
+
+  background-image: url(src/assets/images/auth-side-image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#auth-wrapper .auth-box {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding-left: 100px;
+  padding-right: 130px;
+  min-width: 610px;
+
+  background-color: aquamarine;
+}
