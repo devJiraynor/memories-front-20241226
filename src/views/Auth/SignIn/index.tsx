@@ -1,9 +1,18 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import './style.css';
 import InputBox from 'src/components/InputBox';
+import { AuthPage } from 'src/types/aliases';
+
+
+// interface: 로그인 컴포넌트 속성 //
+interface Props {
+  onPageChange: (page: AuthPage) => void;
+}
 
 // component: 로그인 컴포넌트 //
-export default function SignIn() {
+export default function SignIn(props: Props) {
+
+  const { onPageChange } = props;
 
   // state: 유저 아이디 상태 //
   const [userId, setUserId] = useState<string>('');
@@ -54,7 +63,7 @@ export default function SignIn() {
       </div>
       <div className='button-container'>
         <div className='button primary fullwidth' onClick={onLoginButtonClick}>로그인</div>
-        <div className='link'>회원가입</div>
+        <div className='link' onClick={() => onPageChange('sign-up')}>회원가입</div>
       </div>
       <div className='divider'></div>
       <div className='sns-container'>
