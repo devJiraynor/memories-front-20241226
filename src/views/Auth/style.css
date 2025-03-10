@@ -31,42 +31,10 @@
   width: 64px;
 }
 
-#auth-login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-
-  width: 380px;
+.sns-button.kakao {
+  background-image: url('/src/assets/images/kakao.png');
 }
 
-#auth-login-container .header {
-  color: var(--Lightmode-Grey);
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 173%;
+.sns-button.naver {
+  background-image: url('/src/assets/images/naver.png');
 }
-
-#auth-login-container .input-container {
-  align-self: stretch;
-
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-#auth-login-container .button-container {
-  align-self: stretch;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-#auth-login-container .sns-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16x;
-}
-
-

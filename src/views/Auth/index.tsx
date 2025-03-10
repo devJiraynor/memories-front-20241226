@@ -1,51 +1,22 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
+
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+
 import './style.css';
-import InputBox from 'src/components/InputBox';
 
 // component: 로그인 회원가입 화면 컴포넌트 //
 export default function Auth() {
 
-  // state: 유저 아이디 상태 //
-  const [userId, setUserId] = useState<string>('');
-  // state: 유저 비밀번호 상태 //
-  const [userPassword, setUserPassword] = useState<string>('');
-
-  // event handler: 유저 아이디 변경 이벤트 처리 //
-  const onUserIdChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setUserId(value);
-  };
-
-  // event handler: 유저 비밀번호 변경 이벤트 처리 //
-  const onUserPasswordChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setUserPassword(value);
-  };
+  // state: 페이지 상태 //
+  const [page, setPage] = useState<'sign-in' | 'sign-up'>('sign-in');
 
   // render: 로그인 회원가입 화면 컴포넌트 렌더링 //
   return (
     <div id='auth-wrapper'>
       <div className='auth-side-image'></div>
       <div className='auth-box'>
-        <div id='auth-login-container'>
-          <div className='header'>Memories</div>
-          <div className='input-container'>
-
-            <InputBox type={'text'} label={'아이디'} value={userId} placeholder={'아이디를 입력해주세요.'} message={''} onChange={onUserIdChangeHandler} />
-
-            <InputBox type={'password'} label={'비밀번호'} value={userPassword} placeholder={'비밀번호를 입력해주세요.'} message={''} isErrorMessage onChange={onUserPasswordChangeHandler} />
-
-          </div>
-          <div className='button-container'>
-            <div className='button primary fullwidth'>로그인</div>
-            <div className='link'>회원가입</div>
-          </div>
-          <div className='divider'></div>
-          <div className='sns-container'>
-            <div className='sns-header'>SNS 로그인</div>
-            <div className='sns-button-box'></div>
-          </div>
-        </div>
+        {page === 'sign-in' ? <SignIn /> : <SignUp/>}
       </div>
     </div>
   )
