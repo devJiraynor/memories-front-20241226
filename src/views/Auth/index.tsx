@@ -31,14 +31,20 @@ export default function Auth() {
           <div className='header'>Memories</div>
           <div className='input-container'>
 
-            <InputBox type={'text'} label={'아이디'} value={userId} placeholder={'아이디를 입력해주세요.'} buttonName={''} message={''} onChange={onUserIdChangeHandler} />
+            <InputBox type={'text'} label={'아이디'} value={userId} placeholder={'아이디를 입력해주세요.'} message={''} onChange={onUserIdChangeHandler} />
 
-            <InputBox type={'password'} label={'비밀번호'} value={userPassword} placeholder={'비밀번호를 입력해주세요.'} buttonName={''} message={''} onChange={onUserPasswordChangeHandler} />
+            <InputBox type={'password'} label={'비밀번호'} value={userPassword} placeholder={'비밀번호를 입력해주세요.'} message={''} isErrorMessage onChange={onUserPasswordChangeHandler} />
 
           </div>
-          <div className='button-container'></div>
+          <div className='button-container'>
+            <div className='button primary fullwidth'>로그인</div>
+            <div className='link'>회원가입</div>
+          </div>
           <div className='divider'></div>
-          <div className='sns-container'></div>
+          <div className='sns-container'>
+            <div className='sns-header'>SNS 로그인</div>
+            <div className='sns-button-box'></div>
+          </div>
         </div>
       </div>
     </div>
