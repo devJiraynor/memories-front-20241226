@@ -1,5 +1,6 @@
 #layout-wrapper {
   background-color: var(--Beige);
+  min-width: 1440px;
   min-height: 1000px;
 }
 
@@ -90,6 +91,14 @@
   line-height: 175%;
 }
 
+#top-bar .my-content-item:hover {
+  font-weight: 700;
+}
+
 #top-bar .my-content-item:first-child {
   border-bottom: 1px solid var(--Lightmode-Grey3);
+}
+
+#main {
+  padding: 40px 130px 80px;
 }
