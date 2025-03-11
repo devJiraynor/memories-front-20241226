@@ -1,0 +1,95 @@
+#layout-wrapper {
+  background-color: var(--Beige);
+  min-height: 1000px;
+}
+
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 60px;
+  padding: 0 20px;
+
+  background-color: var(--White);
+}
+
+#top-bar .navigation {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+#top-bar .navigation>.title {
+  color: var(--Lightmode-Grey);
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30%;
+
+  cursor: pointer;
+}
+
+#top-bar .navigation>.navigation-list {
+  display: flex;
+  gap: 40px;
+}
+#top-bar .navigation>.navigation-list>.navigation-item {
+  color: var(--Lightmode-Grey);
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30%;
+
+  cursor: pointer;
+}
+
+#top-bar .navigation>.navigation-list>.navigation-item.active {
+  color: var(--Primary);
+
+  cursor: default;
+}
+
+#top-bar .my-content {
+  position: relative;
+
+  width: 32px;
+  height: 32px;
+
+  background-image: url('/src/assets/images/user-profile.png');
+  background-size: 100% 100%;
+
+  cursor: pointer;
+}
+
+#top-bar .my-content-list {
+  position: absolute;
+  top: 36px;
+  right: 0;
+
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid var(--Lightmode-Grey3);
+  width: 90px;
+
+  background-color: var(--White);
+}
+
+#top-bar .my-content-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 32px;
+
+  color: var(--Lightmode-Grey);
+
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 175%;
+}
+
+#top-bar .my-content-item:first-child {
+  border-bottom: 1px solid var(--Lightmode-Grey3);
+}

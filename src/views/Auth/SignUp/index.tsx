@@ -1,9 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
-import './style.css';
-import { AuthPage } from 'src/types/aliases';
 import InputBox from 'src/components/InputBox';
+
+import { AuthPage } from 'src/types/aliases';
+
+import './style.css';
 
 // interface: 회원가입 컴포넌트 속성 //
 interface Props {
