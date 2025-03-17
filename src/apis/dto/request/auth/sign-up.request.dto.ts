@@ -1,3 +1,5 @@
+import { JoinType } from 'src/types/aliases';
+
 // interface: sign up request body DTO //
 export default interface SignUpRequestDto {
   userId: string;
@@ -5,5 +7,6 @@ export default interface SignUpRequestDto {
   name: string;
   address: string;
   detailAddress: string | null;
-  joinType: 'NORMAL' | 'KAKAO' | 'NAVER';
-}
+  joinType: JoinType;
+  snsId?: string;
+}   

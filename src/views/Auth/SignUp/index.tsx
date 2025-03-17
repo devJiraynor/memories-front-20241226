@@ -1,16 +1,16 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
 import InputBox from 'src/components/InputBox';
 
-import { AuthPage } from 'src/types/aliases';
-
-import './style.css';
+import { AuthPage, JoinType } from 'src/types/aliases';
 import { idCheckRequest, signUpRequest } from 'src/apis';
 import { IdCheckRequestDto, SignUpRequestDto } from 'src/apis/dto/request/auth';
 import { ResponseDto } from 'src/apis/dto/response';
-import { useCookies } from 'react-cookie';
-import { JOIN_TYPE, SNS_ID } from 'src/constants';
+import { JOIN_TYPE, ROOT_PATH, SNS_ID } from 'src/constants';
+
+import './style.css';
 
 // interface: 회원가입 컴포넌트 속성 //
 interface Props {
@@ -58,6 +58,11 @@ export default function SignUp(props: Props) {
   const [isUserPasswordChecked, setUserPasswordChecked] = useState<boolean>(false);
   // state: 사용자 비밀번호 동일 여부 상태 //
   const [isUserPasswordEqual, setUserPasswordEqual] = useState<boolean>(false);
+
+  // state: 가입 경로 상태 //
+  const [joinType, setJoinType] = useState<JoinType>('NORMAL');
+  // state: SNS ID 상태 //
+  const [snsId, setSnsId] = useState<string | undefined>(undefined);
   
   // variable: 중복 확인 버튼 활성화 //
   const isUserIdCheckButtonActive = userId !== '';
@@ -68,7 +73,7 @@ export default function SignUp(props: Props) {
   // variable: 회원가입 버튼 클래스 //
   const signUpButtonClass = `button ${isSignUpButtonActive ? 'primary' : 'disable'} fullwidth`;
   // variable: SNS 회원가입 여부 //
-  const isSns = cookies[JOIN_TYPE] !== undefined && cookies[SNS_ID] !== undefined;
+  const isSns = joinType !== 'NORMAL' && snsId !== undefined;
 
   // function: 다음 포스트 코드 팝업 오픈 함수 //
   const open = useDaumPostcodePopup();
@@ -197,10 +202,19 @@ export default function SignUp(props: Props) {
 
     const requestBody: SignUpRequestDto = {
       userId, userPassword, name: userName, 
-      address: userAddress, detailAddress: userDetailAddress, joinType: 'NORMAL'
+      address: userAddress, detailAddress: userDetailAddress, joinType, snsId
     };
     signUpRequest(requestBody).then(signUpResponse);
   };
+
+  // effect: 컴포넌트 로드시 실행할 함수 //
+  useEffect(() => {
+    if (cookies[JOIN_TYPE]) setJoinType(cookies[JOIN_TYPE]);
+    if (cookies[SNS_ID]) setSnsId(cookies[SNS_ID]);
+
+    removeCookie(JOIN_TYPE, { path: ROOT_PATH });
+    removeCookie(SNS_ID, { path: ROOT_PATH });
+  }, []);
 
   // effect: 사용자 비밀번호 또는 사용자 비밀번호 확인이 변경될시 실행할 함수 //
   useEffect(() => {
