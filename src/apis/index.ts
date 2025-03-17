@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import { IdCheckRequestDto, SignUpRequestDto } from './dto/request/auth';
+import { IdCheckRequestDto, SignInRequestDto, SignUpRequestDto } from './dto/request/auth';
 import { ResponseDto } from './dto/response';
+import { SignInResponseDto } from './dto/response/auth';
 
 // variable: URL 상수 //
 const API_DOMAIN = process.env.REACT_APP_API_DOMAIN;
@@ -10,9 +11,10 @@ const AUTH_MODULE_URL = `${API_DOMAIN}/api/v1/auth`;
 
 const ID_CHECK_URL = `${AUTH_MODULE_URL}/id-check`;
 const SIGN_UP_URL = `${AUTH_MODULE_URL}/sign-up`;
+const SIGN_IN_URL = `${AUTH_MODULE_URL}/sign-in`;
 
 // function: response 성공 처리 함수 //
-const responseSuccessHandler = (response: AxiosResponse<ResponseDto>) => {
+const responseSuccessHandler = <T = ResponseDto>(response: AxiosResponse<T>) => {
   // response.data: Response Body
   const { data } = response;
   return data;
@@ -37,6 +39,14 @@ export const idCheckRequest = async (requestBody: IdCheckRequestDto) => {
 export const signUpRequest = async (requestBody: SignUpRequestDto) => {
   const responseBody = await axios.post(SIGN_UP_URL, requestBody)
     .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: sign in API 요청 함수 //
+export const signInRequest = async (requestBody: SignInRequestDto) => {
+  const responseBody = await axios.post(SIGN_IN_URL, requestBody)
+    .then(responseSuccessHandler<SignInResponseDto>)
     .catch(responseErrorHandler);
   return responseBody;
 };
