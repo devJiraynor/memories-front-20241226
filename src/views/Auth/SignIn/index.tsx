@@ -82,6 +82,11 @@ export default function SignIn(props: Props) {
     signInRequest(requestBody).then(signInResponse);
   };
 
+  // event handler: sns 로그인 버튼 클릭 이벤트 처리 //
+  const onSnsButtonClickHandler = (sns: 'kakao' | 'naver') => {
+    window.location.href = `http://localhost:4000/api/v1/auth/sns/${sns}`;
+  };
+
   // effect: 아이디 혹은 비밀번호 변경시 실행할 함수 //
   useEffect(() => {
     setUserIdMessage('');
@@ -107,8 +112,8 @@ export default function SignIn(props: Props) {
       <div className='sns-container'>
         <div className='sns-header'>SNS 로그인</div>
         <div className='sns-button-box'>
-          <div className='sns-button kakao'></div>
-          <div className='sns-button naver'></div>
+          <div className='sns-button kakao' onClick={() => onSnsButtonClickHandler('kakao')}></div>
+          <div className='sns-button naver' onClick={() => onSnsButtonClickHandler('naver')}></div>
         </div>
       </div>
     </div>

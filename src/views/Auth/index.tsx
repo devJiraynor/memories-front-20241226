@@ -8,7 +8,7 @@ import { AuthPage } from 'src/types/aliases';
 import './style.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router';
-import { ACCESS_TOKEN, MAIN_ABSOLUTE_PATH } from 'src/constants';
+import { ACCESS_TOKEN, JOIN_TYPE, MAIN_ABSOLUTE_PATH, SNS_ID } from 'src/constants';
 
 // component: 로그인 회원가입 화면 컴포넌트 //
 export default function Auth() {
@@ -30,6 +30,7 @@ export default function Auth() {
   // effect: 화면 렌더시 실행할 함수 //
   useEffect(() => {
     if (cookies[ACCESS_TOKEN]) navigator(MAIN_ABSOLUTE_PATH);
+    if (cookies[JOIN_TYPE] && cookies[SNS_ID]) setPage('sign-up');
   }, []);
 
   // render: 로그인 회원가입 화면 컴포넌트 렌더링 //

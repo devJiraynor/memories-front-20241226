@@ -9,6 +9,8 @@ import './style.css';
 import { idCheckRequest, signUpRequest } from 'src/apis';
 import { IdCheckRequestDto, SignUpRequestDto } from 'src/apis/dto/request/auth';
 import { ResponseDto } from 'src/apis/dto/response';
+import { useCookies } from 'react-cookie';
+import { JOIN_TYPE, SNS_ID } from 'src/constants';
 
 // interface: 회원가입 컴포넌트 속성 //
 interface Props {
@@ -19,6 +21,9 @@ interface Props {
 export default function SignUp(props: Props) {
 
   const { onPageChange } = props;
+
+  // state: cookie 상태 //
+  const [cookies, _, removeCookie] = useCookies();
 
   // state: 사용자 이름 상태 //
   const [userName, setUserName] = useState<string>('');
@@ -62,6 +67,8 @@ export default function SignUp(props: Props) {
     isUserIdChecked && isUserPasswordChecked && isUserPasswordEqual;
   // variable: 회원가입 버튼 클래스 //
   const signUpButtonClass = `button ${isSignUpButtonActive ? 'primary' : 'disable'} fullwidth`;
+  // variable: SNS 회원가입 여부 //
+  const isSns = cookies[JOIN_TYPE] !== undefined && cookies[SNS_ID] !== undefined;
 
   // function: 다음 포스트 코드 팝업 오픈 함수 //
   const open = useDaumPostcodePopup();
@@ -172,6 +179,11 @@ export default function SignUp(props: Props) {
     open({ onComplete: daumPostCompleteHandler });
   };
 
+  // event handler: sns 로그인 버튼 클릭 이벤트 처리 //
+  const onSnsButtonClickHandler = (sns: 'kakao' | 'naver') => {
+    window.location.href = `http://localhost:4000/api/v1/auth/sns/${sns}`;
+  };
+
   // event handler: 회원가입 버튼 클릭 이벤트 처리 //
   const onSignUpClickHandler = () => {
     if (!userName) setUserNameMessage('이름을 입력해주세요');
@@ -202,13 +214,15 @@ export default function SignUp(props: Props) {
   return (
     <div id='auth-sign-up-container'>
       <div className='header'>Memories</div>
+      {!isSns &&
       <div className='sns-container'>
         <div className='sns-header'>SNS 회원가입</div>
         <div className='sns-button-box'>
-          <div className='sns-button kakao'></div>
-          <div className='sns-button naver'></div>
+          <div className='sns-button kakao' onClick={() => onSnsButtonClickHandler('kakao')}></div>
+          <div className='sns-button naver' onClick={() => onSnsButtonClickHandler('naver')}></div>
         </div>
       </div>
+      }
       <div className='divider'></div>
       <div className='input-container'>
 

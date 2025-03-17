@@ -27,3 +27,7 @@ export const DIARY_UPDATE_ABSOLUTE_PATH = (diaryNumber: number | string) => `${R
 
 // variable: access token 속성명 //
 export const ACCESS_TOKEN = 'accessToken';
+// variable: join type 속성명 //
+export const JOIN_TYPE = 'joinType';
+// variable: sns id 속성명 //
+export const SNS_ID = 'snsId';
