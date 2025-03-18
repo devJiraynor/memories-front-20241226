@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 
 import InputBox from 'src/components/InputBox';
 import { AuthPage } from 'src/types/aliases';
-import { signInRequest } from 'src/apis';
+import { signInRequest, SNS_SIGN_IN_URL } from 'src/apis';
 import { SignInRequestDto } from 'src/apis/dto/request/auth';
 import { SignInResponseDto } from 'src/apis/dto/response/auth';
 import { ResponseDto } from 'src/apis/dto/response';
@@ -84,7 +84,7 @@ export default function SignIn(props: Props) {
 
   // event handler: sns 로그인 버튼 클릭 이벤트 처리 //
   const onSnsButtonClickHandler = (sns: 'kakao' | 'naver') => {
-    window.location.href = `http://localhost:4000/api/v1/auth/sns/${sns}`;
+    window.location.href = SNS_SIGN_IN_URL(sns);
   };
 
   // effect: 아이디 혹은 비밀번호 변경시 실행할 함수 //

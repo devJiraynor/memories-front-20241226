@@ -12,6 +12,7 @@ const AUTH_MODULE_URL = `${API_DOMAIN}/api/v1/auth`;
 const ID_CHECK_URL = `${AUTH_MODULE_URL}/id-check`;
 const SIGN_UP_URL = `${AUTH_MODULE_URL}/sign-up`;
 const SIGN_IN_URL = `${AUTH_MODULE_URL}/sign-in`;
+export const SNS_SIGN_IN_URL = (sns: 'kakao' | 'naver') => `${AUTH_MODULE_URL}/sns/${sns}`;
 
 // function: response 성공 처리 함수 //
 const responseSuccessHandler = <T = ResponseDto>(response: AxiosResponse<T>) => {

@@ -5,7 +5,7 @@ import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 import InputBox from 'src/components/InputBox';
 
 import { AuthPage, JoinType } from 'src/types/aliases';
-import { idCheckRequest, signUpRequest } from 'src/apis';
+import { idCheckRequest, signUpRequest, SNS_SIGN_IN_URL } from 'src/apis';
 import { IdCheckRequestDto, SignUpRequestDto } from 'src/apis/dto/request/auth';
 import { ResponseDto } from 'src/apis/dto/response';
 import { JOIN_TYPE, ROOT_PATH, SNS_ID } from 'src/constants';
@@ -186,7 +186,7 @@ export default function SignUp(props: Props) {
 
   // event handler: sns 로그인 버튼 클릭 이벤트 처리 //
   const onSnsButtonClickHandler = (sns: 'kakao' | 'naver') => {
-    window.location.href = `http://localhost:4000/api/v1/auth/sns/${sns}`;
+    window.location.href = SNS_SIGN_IN_URL(sns);
   };
 
   // event handler: 회원가입 버튼 클릭 이벤트 처리 //
