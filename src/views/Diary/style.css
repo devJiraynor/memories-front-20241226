@@ -47,3 +47,14 @@
   font-weight: 400;
   line-height: 140%;
 }
+
+#diary-main-wrapper .jumbotron-button-box {
+  display: flex;
+  justify-content: center;
+}
+
+#diary-main-wrapper .diary-list-container {
+  display: flex;
+  flex-direction: column;
+  gap:24px;
+}

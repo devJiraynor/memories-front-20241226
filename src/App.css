@@ -46,6 +46,11 @@ body {
   width: 100%;
 }
 
+.button.middle {
+  box-sizing: border-box;
+  width: 144px;
+}
+
 .button.disable {
   background-color: var(--Lightmode-Grey3);
 
