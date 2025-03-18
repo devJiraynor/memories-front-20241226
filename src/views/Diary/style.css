@@ -1,0 +1,49 @@
+#diary-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  margin: 0 auto;
+  width: 1180px;
+}
+
+#diary-main-wrapper .jumbotron {
+  display: flex;
+  justify-content: center;
+
+  border-radius: 10px;
+  padding: 40px 0;
+
+  background-color: var(--White);
+}
+
+#diary-main-wrapper .jumbotron-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#diary-main-wrapper .jumbotron-content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#diary-main-wrapper .jumbotron-title {
+  color: var(--Lightmode-Grey);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#diary-main-wrapper .jumbotron-content {
+  white-space: pre-wrap;
+
+  text-align: center;
+  color: var(--Lightmode-Grey);
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+}
