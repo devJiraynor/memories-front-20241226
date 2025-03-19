@@ -117,3 +117,70 @@ body {
 .feeling-icon.angry {
   background-image: url(src/assets/images/angry.png);
 }
+
+.feeling-icon.normal-active {
+  background-image: url(src/assets/images/normal-active.png);
+}
+
+.feeling-icon.happy-active {
+  background-image: url(src/assets/images/happy-active.png);
+}
+
+.feeling-icon.funny-active {
+  background-image: url(src/assets/images/funny-active.png);
+}
+
+.feeling-icon.sad-active {
+  background-image: url(src/assets/images/sad-active.png);
+}
+
+.feeling-icon.angry-active {
+  background-image: url(src/assets/images/angry-active.png);
+}
+
+.weather-icon {
+  width: 18px;
+  height: 18px;
+
+  background-size: 100% 100%;
+}
+
+.weather-icon.sun {
+  background-image: url(src/assets/images/sun.png);
+}
+
+.weather-icon.cloud {
+  background-image: url(src/assets/images/cloud.png);
+}
+
+.weather-icon.rain {
+  background-image: url(src/assets/images/rain.png);
+}
+
+.weather-icon.snow {
+  background-image: url(src/assets/images/snow.png);
+}
+
+.weather-icon.fog {
+  background-image: url(src/assets/images/fog.png);
+}
+
+.weather-icon.sun-active {
+  background-image: url(src/assets/images/sun-active.png);
+}
+
+.weather-icon.cloud-active {
+  background-image: url(src/assets/images/cloud-active.png);
+}
+
+.weather-icon.rain-active {
+  background-image: url(src/assets/images/rain-active.png);
+}
+
+.weather-icon.snow-active {
+  background-image: url(src/assets/images/snow-active.png);
+}
+
+.weather-icon.fog-active {
+  background-image: url(src/assets/images/fog-active.png);
+}

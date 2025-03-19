@@ -8,6 +8,7 @@ import { ACCESS_TOKEN, AUTH_ABSOLUTE_PATH, AUTH_PATH, CONCENTRATION_TEST_COMPLET
 
 import './App.css';
 import DiaryMain from './views/Diary';
+import DiaryWrite from './views/Diary/Write';
 
 // Router 구성
 // - /auth : 로그인 및 회원가입 페이지
@@ -46,7 +47,7 @@ function App() {
 
         <Route path={DIARY_PATH}>
           <Route index element={<DiaryMain />} />
-          <Route path={DIARY_WRITE_PATH} element={<>일기 작성 페이지</>} />
+          <Route path={DIARY_WRITE_PATH} element={<DiaryWrite />} />
           <Route path={DIARY_VIEW_PATH}>
             <Route index element={<>일기 보기 페이지</>} />
             <Route path={DIARY_UPDATE_PATH} element={<>일기 수정 페이지</>} />
