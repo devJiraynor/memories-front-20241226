@@ -124,6 +124,12 @@
   line-height: 50px;
 }
 
+.diary-list-table .td .feeling-box {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 #diary-main-wrapper .pagination-container {
   display: flex;
   justify-content: center;
