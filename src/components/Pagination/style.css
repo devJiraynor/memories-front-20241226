@@ -1,0 +1,47 @@
+.pagination-box {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.pagination-box .pagination-button {
+  width: 40px;
+  height: 40px;
+
+  background-size: 100% 100%;
+
+  cursor: pointer;
+}
+
+.pagination-box .pagination-button.left {
+  background-image: url(src/assets/images/page-left.png);
+}
+
+.pagination-box .pagination-button.right {
+  background-image: url(src/assets/images/page-right.png);
+}
+
+.pagination-box .pagination {
+  display: flex;
+  gap: 16px;
+}
+
+.pagination-box .pagination .page {
+  color: var(--Lightmode-Grey2);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  cursor: pointer;
+}
+
+.pagination-box .pagination .page:hover {
+  font-weight: 700;
+}
+
+.pagination-box .pagination .page.active {
+  color: var(--Lightmode-Grey);
+  font-weight: 700;
+  cursor: default;
+}
