@@ -3,11 +3,12 @@ import React from 'react';
 import { Color } from '@tiptap/extension-color';
 import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
-import { Editor, EditorContent, EditorProvider, useCurrentEditor, useEditor } from '@tiptap/react';
+import { Editor, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 import './style.css';
 
+// interface: Text Editor Menu Bar 컴포넌트 속성 //
 interface MenuBarProp {
   editor: Editor | null
 }
@@ -15,6 +16,7 @@ interface MenuBarProp {
 // component: Text Editor Menu Bar 컴포넌트 //
 function MenuBar({ editor }: MenuBarProp) {
 
+  // render: Text Editor Menu Bar 컴포넌트 렌더링 //
   if (!editor) return null;
 
   // render: Text Editor Menu Bar 컴포넌트 렌더링 //
@@ -69,6 +71,7 @@ function MenuBar({ editor }: MenuBarProp) {
   )
 }
 
+// variable: tiptap Text Editor 확장 //
 const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   StarterKit.configure({
@@ -84,7 +87,7 @@ const extensions = [
 ]
 
 
-// render: tiptap Text Editor 컴포넌트 속성 //
+// interface: tiptap Text Editor 컴포넌트 속성 //
 interface Props {
   content: string;
   setContent: (content: string) => void;
@@ -93,6 +96,7 @@ interface Props {
 // component: tiptap Text Editor 컴포넌트 //
 export default function TextEditor({ content, setContent }: Props) {
 
+  // state: editor 상태 //
   const editor = useEditor({
     extensions,
     content,
