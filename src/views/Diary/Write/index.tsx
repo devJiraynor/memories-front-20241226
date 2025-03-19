@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.css';
+import TextEditor from 'src/components/TextEditor';
 
 // component: 일기 작성 화면 컴포넌트 //
 export default function DiaryWrite() {
@@ -56,6 +57,7 @@ export default function DiaryWrite() {
           </div>
           <div className='input-column-box'>
             <div className='title'>내용</div>
+            <TextEditor />
           </div>
         </div>
       </div>
