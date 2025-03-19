@@ -32,7 +32,26 @@ export default function DiaryMain() {
         </div>
       </div>
       <div className='diary-list-container'>
-        <div className='diary-list-table'></div>
+        <div className='diary-list-table'>
+          <div className='tr'>
+            <div className='th'>날짜</div>
+            <div className='th title'>제목</div>
+            <div className='th'>날씨</div>
+            <div className='th'>기분</div>
+          </div>
+          <div className='tr'>
+            <div className='td'>2025-03-19</div>
+            <div className='td title'>내가 그린 기린 그림은 잘그린 기린 그림이고 네가 그린 기린 그림은 잘 못그린 기린 그림이다. 안녕하세요. 잘가세요.</div>
+            <div className='td'>맑음</div>
+            <div className='td'>행복</div>
+          </div>
+          <div className='tr'>
+            <div className='td'>날짜</div>
+            <div className='td title'>제목</div>
+            <div className='td'>날씨</div>
+            <div className='td'>기분</div>
+          </div>
+        </div>
         <div className='pagination-container'></div>
       </div>
     </div>
