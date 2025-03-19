@@ -69,6 +69,12 @@
   box-sizing: border-box;
   border-bottom: 1px solid var(--Lightmode-Grey3);
   height: 50px;
+
+  cursor: pointer;
+}
+
+.diary-list-table>.tr:first-child {
+  cursor: default;
 }
 
 .diary-list-table>.tr:last-child {
@@ -114,6 +120,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+
   line-height: 50px;
 }
