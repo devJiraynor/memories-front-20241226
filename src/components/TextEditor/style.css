@@ -1,0 +1,88 @@
+#text-editor-menu-bar {
+    display: flex;
+    gap: 4px;
+  
+    border-radius: 8px;
+    border: 1px solid var(--Lightmode-Grey);
+    background: var(--Lightmode-Grey3);
+}
+
+#text-editor-menu-bar .item-box {
+    padding: 8px;
+}
+
+#text-editor-menu-bar .item-box .item {
+    border-radius: 2px;
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+
+    cursor: pointer;
+}
+
+#text-editor-menu-bar .item-box .item.active {
+    background-color: var(--Beige);
+}
+
+#text-editor-menu-bar .item-box .divider {
+    height: 100%;
+    border-left: 1px solid var(--Lightmode-Grey4);
+}
+
+#text-editor-menu-bar .item-box .item.bold {
+    background-image: url(src/assets/images/text-bold.png);
+}
+
+#text-editor-menu-bar .item-box .item.italics {
+    background-image: url(src/assets/images/text-italics.png);
+}
+
+#text-editor-menu-bar .item-box .item.strike {
+    background-image: url(src/assets/images/text-strike.png);
+}
+
+#text-editor-menu-bar .item-box .item.h1 {
+    background-image: url(src/assets/images/text-h1.png);
+}
+
+#text-editor-menu-bar .item-box .item.h2 {
+    background-image: url(src/assets/images/text-h2.png);
+}
+
+#text-editor-menu-bar .item-box .item.h3 {
+    background-image: url(src/assets/images/text-h3.png);
+}
+
+#text-editor-menu-bar .item-box .item.ol {
+    background-image: url(src/assets/images/text-ol.png);
+    background-position: 50% 50%;
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+
+#text-editor-menu-bar .item-box .item.ul {
+    background-image: url(src/assets/images/text-ul.png);
+    background-position: 50% 50%;
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+
+#text-editor-menu-bar .item-box .item.left {
+    background-image: url(src/assets/images/text-return-left.png);
+}
+
+#text-editor-menu-bar .item-box .item.right {
+    background-image: url(src/assets/images/text-return-right.png);
+}
+
+#text-editor-menu-bar .item-box .item.hori {
+    background-image: url(src/assets/images/text-hori.png);
+}
+
+.tiptap {
+    outline: none;
+  
+    border-radius: 6px;
+    border: 1px solid var(--Lightmode-Grey3);
+    padding: 8px 16px;
+  }
