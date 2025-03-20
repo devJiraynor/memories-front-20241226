@@ -1,0 +1,90 @@
+#diary-update-wrapper {
+  margin: 0 auto;
+  width: 1180px;
+}
+
+#diary-update-wrapper .update-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  border-radius: 10px;
+  padding: 24px;
+
+  background-color: var(--White);
+}
+
+#diary-update-wrapper .update-title {
+  color: var(--Lightmode-Grey);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#diary-update-wrapper .contents-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#diary-update-wrapper .input-row-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+#diary-update-wrapper .input-row-box .title, 
+#diary-update-wrapper .input-column-box .title{
+  width: 50px;
+
+  color: var(--Lightmode-Grey);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#diary-update-wrapper .input-row-box .content {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  color: var(--Lightmode-Grey);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+#diary-update-wrapper .input-row-box .content.active {
+  color: var(--Primary);
+}
+
+#diary-update-wrapper .input-row-box .content.pointer {
+  cursor: pointer;
+}
+
+#diary-update-wrapper .input-column-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#diary-update-wrapper .input-column-box input {
+  border-radius: 6px;
+  border: 1px solid var(--Lightmode-Grey3);
+  padding: 8px 16px;
+
+  outline: none;
+
+  color: var(--Lightmode-Grey);
+
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+}
+
+#diary-update-wrapper .button-box {
+  display: flex;
+  justify-content: end;
+}

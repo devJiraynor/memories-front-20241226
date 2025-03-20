@@ -61,7 +61,7 @@ export default function Layout() {
 
   // effect: cookie의 accessToken이 변경될 시 실행할 함수 //
   useEffect(() => {
-    // if (!cookies[ACCESS_TOKEN]) navigator(AUTH_ABSOLUTE_PATH);
+    if (!cookies[ACCESS_TOKEN]) navigator(AUTH_ABSOLUTE_PATH);
   }, [cookies[ACCESS_TOKEN], pathname]);
 
   // effect: My Content 드롭다운 상태가 변경될시 실행할 함수 //
