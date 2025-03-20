@@ -4,9 +4,9 @@ import { ResponseDto } from 'src/apis/dto/response';
 export default interface GetSignInUserResponseDto extends ResponseDto {
   userId: string;
   name: string;
-  profileImage?: string | null;
+  profileImage: string | null;
   address: string;
-  detailAddress?: string | null;
-  gender?: string | null;
-  age?: number | null;
+  detailAddress: string | null;
+  gender: string | null;
+  age: number | null;
 }

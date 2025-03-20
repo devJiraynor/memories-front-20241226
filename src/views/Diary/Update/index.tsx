@@ -3,16 +3,15 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import TextEditor from 'src/components/TextEditor';
 import { Feeling, Weather } from 'src/types/aliases';
 
-import dayjs from 'dayjs';
-
 import './style.css';
-import { getDiaryRequest, patchDiaryRequest, postDiaryRequest } from 'src/apis';
+import { getDiaryRequest, patchDiaryRequest } from 'src/apis';
 import { useCookies } from 'react-cookie';
 import { ACCESS_TOKEN, DIARY_ABSOLUTE_PATH, DIARY_VIEW_ABSOLUTE_PATH } from 'src/constants';
-import { PatchDiaryRequestDto, PostDiaryRequestDto } from 'src/apis/dto/request/diary';
+import { PatchDiaryRequestDto } from 'src/apis/dto/request/diary';
 import { ResponseDto } from 'src/apis/dto/response';
 import { useNavigate, useParams } from 'react-router';
 import { GetDiaryResponseDto } from 'src/apis/dto/response/diary';
+import { useSignInUserStore } from 'src/stores';
 
 // component: 일기 수정 화면 컴포넌트 //
 export default function DiaryUpdate() {
@@ -23,7 +22,11 @@ export default function DiaryUpdate() {
   // state: 쿠키 상태 //
   const [cookies] = useCookies();
 
+  // state: 로그인 유저 아이디 상태 //
+  const { userId } = useSignInUserStore();
+
   // state: 일기 수정 내용 상태 //
+  const [writerId, setWriterId] = useState<string>('');
   const [writeDate, setWriteDate] = useState<string>('');
   const [weather, setWeather] = useState<Weather | ''>('');
   const [feeling, setFeeling] = useState<Feeling | ''>('');
@@ -104,7 +107,8 @@ export default function DiaryUpdate() {
       return;
     }
 
-    const { writeDate, weather, feeling, title, content } = responseBody as GetDiaryResponseDto;
+    const { writerId, writeDate, weather, feeling, title, content } = responseBody as GetDiaryResponseDto;
+    setWriterId(writerId);
     setWriteDate(writeDate);
     setWeather(weather);
     setFeeling(feeling);
@@ -167,6 +171,14 @@ export default function DiaryUpdate() {
     if (!accessToken || !diaryNumber) return;
     getDiaryRequest(diaryNumber, accessToken).then(getDiaryResponse);
   }, [diaryNumber]);
+  
+  // effect: 로그인 유저 아이디와 작성자 아이디가 변경될시 실행할 함수 //
+  useEffect(() => {
+    if (writerId && userId && writerId !== userId) {
+      alert('권한이 없습니다.');
+      navigator(DIARY_ABSOLUTE_PATH);
+    }
+  }, [writerId, userId]);
 
   // render: 일기 수정 화면 컴포넌트 렌더링 //
   return (

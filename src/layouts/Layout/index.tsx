@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import { getSignInUserRequest } from 'src/apis';
 import { GetSignInUserResponseDto } from 'src/apis/dto/response/user';
 import { ResponseDto } from 'src/apis/dto/response';
+import { useSignInUserStore } from 'src/stores';
 
 // component: 공통 레이아웃 컴포넌트 //
 export default function Layout() {
@@ -20,6 +21,9 @@ export default function Layout() {
 
   // state: My Content List 요소 참조 //
   const myContentListRef = useRef<HTMLDivElement | null>(null);
+
+  // state: 로그인 유저 정보 상태 //
+  const { setUserId, setName, setProfileImage, setAddress, setDetailAddress, setGender, setAge, resetSignInUser } = useSignInUserStore();
 
   // state: My Content 드롭다운 상태 //
   const [showMyContent, setShowMyContent] = useState<boolean>(false);
@@ -38,6 +42,23 @@ export default function Layout() {
       !responseBody ? '서버에 문제가 있습니다.' :
       responseBody.code === 'DBE' ? '서버에 문제가 있습니다.' :
       responseBody.code === 'AF' ? '인증에 실패했습니다.' : '';
+
+    const isSuccess = responseBody !== null && responseBody.code === 'SU';
+    if (!isSuccess) {
+      alert(message);
+      removeCookie(ACCESS_TOKEN, { path: ROOT_PATH });
+      resetSignInUser();
+      return;
+    }
+
+    const { userId, name, profileImage, address, detailAddress, gender, age } = responseBody as GetSignInUserResponseDto;
+    setUserId(userId);
+    setName(name);
+    setProfileImage(profileImage);
+    setAddress(address);
+    setDetailAddress(detailAddress);
+    setGender(gender);
+    setAge(age);
   };
 
   // event handler: 홈 클릭 이벤트 처리 //
@@ -68,6 +89,7 @@ export default function Layout() {
   // event handler: 로그아웃 클릭 이벤트 처리 //
   const onSignOutClickHandler = () => {
     removeCookie(ACCESS_TOKEN, { path: ROOT_PATH });
+    resetSignInUser();
   };
 
   // effect: cookie의 accessToken이 변경될 시 실행할 함수 //
