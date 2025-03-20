@@ -5,6 +5,7 @@ import { ResponseDto } from './dto/response';
 import { SignInResponseDto } from './dto/response/auth';
 import { PatchDiaryRequestDto, PostDiaryRequestDto } from './dto/request/diary';
 import { GetDiaryResponseDto, GetMyDiaryResponseDto } from './dto/response/diary';
+import { GetSignInUserResponseDto } from './dto/response/user';
 
 // variable: URL 상수 //
 const API_DOMAIN = process.env.REACT_APP_API_DOMAIN;
@@ -23,6 +24,10 @@ const GET_MY_DIARY_URL = `${DIARY_MODULE_URL}/my`;
 const GET_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}`;
 const PATCH_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}`;
 const DELETE_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}`;
+
+const USER_MODULE_URL = `${API_DOMAIN}/api/v1/user`;
+
+const GET_SIGN_IN_USER_URL = `${USER_MODULE_URL}/sign-in`;
 
 // function: Authorization Bearer 헤더 //
 const bearerAuthorization = (accessToken: string) => ({ headers: { 'Authorization': `Bearer ${accessToken}` } })
@@ -102,5 +107,13 @@ export const deleteDiaryRequest = async (diaryNumber: number | string, accessTok
   const responseBody = await axios.delete(DELETE_DIARY_URL(diaryNumber), bearerAuthorization(accessToken))
     .then(responseSuccessHandler)
     .catch(responseErrorHandler)
+  return responseBody;
+};
+
+// function: get sign in user API 요청 함수 //
+export const getSignInUserRequest = async (accessToken: string) => {
+  const responseBody = await axios.get(GET_SIGN_IN_USER_URL, bearerAuthorization(accessToken))
+    .then(responseSuccessHandler<GetSignInUserResponseDto>)
+    .catch(responseErrorHandler);
   return responseBody;
 };
