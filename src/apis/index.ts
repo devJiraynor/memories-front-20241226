@@ -90,7 +90,7 @@ export const getDiaryRequest = async (diaryNumber: number | string, accessToken:
 };
 
 // function: patch diary API 요청 함수 //
-export const patchDiary = async (diaryNumber: number | string, requestBody: PatchDiaryRequestDto, accessToken: string) => {
+export const patchDiaryRequest = async (diaryNumber: number | string, requestBody: PatchDiaryRequestDto, accessToken: string) => {
   const responseBody = await axios.patch(PATCH_DIARY_URL(diaryNumber), requestBody, bearerAuthorization(accessToken))
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
@@ -98,7 +98,7 @@ export const patchDiary = async (diaryNumber: number | string, requestBody: Patc
 };
 
 // function: delete diary API 요청 함수 //
-export const deleteDiary = async (diaryNumber: number | string, accessToken: string) => {
+export const deleteDiaryRequest = async (diaryNumber: number | string, accessToken: string) => {
   const responseBody = await axios.delete(DELETE_DIARY_URL(diaryNumber), bearerAuthorization(accessToken))
     .then(responseSuccessHandler)
     .catch(responseErrorHandler)
