@@ -1,7 +1,7 @@
 #text-editor-menu-bar {
     display: flex;
     gap: 4px;
-  
+
     border-radius: 8px;
     border: 1px solid var(--Lightmode-Grey);
     background: var(--Lightmode-Grey3);
@@ -81,8 +81,10 @@
 
 .tiptap {
     outline: none;
-  
+
+    box-sizing: border-box;
     border-radius: 6px;
     border: 1px solid var(--Lightmode-Grey3);
     padding: 8px 16px;
-  }
+    min-height: 264px;
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { Color } from '@tiptap/extension-color';
 import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
+import Placeholder from '@tiptap/extension-placeholder';
 import { Editor, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -74,6 +75,9 @@ function MenuBar({ editor }: MenuBarProp) {
 // variable: tiptap Text Editor 확장 //
 const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
+  Placeholder.configure({
+    placeholder: '내용을 입력하세요'
+  }),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,

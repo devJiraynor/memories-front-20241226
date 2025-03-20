@@ -55,6 +55,14 @@
   line-height: 20px;
 }
 
+#diary-write-wrapper .input-row-box .content.active {
+  color: var(--Primary);
+}
+
+#diary-write-wrapper .input-row-box .content.pointer {
+  cursor: pointer;
+}
+
 #diary-write-wrapper .input-column-box {
   display: flex;
   flex-direction: column;
@@ -74,4 +82,9 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 175%;
+}
+
+#diary-write-wrapper .button-box {
+  display: flex;
+  justify-content: end;
 }
