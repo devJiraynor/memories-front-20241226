@@ -1,16 +1,35 @@
 import React, { ChangeEvent, useState } from 'react'
-import './style.css';
+
 import TextEditor from 'src/components/TextEditor';
 import { Feeling, Weather } from 'src/types/aliases';
 
+import dayjs from 'dayjs';
+
+import './style.css';
+import { postDiaryRequest } from 'src/apis';
+import { useCookies } from 'react-cookie';
+import { ACCESS_TOKEN, DIARY_ABSOLUTE_PATH } from 'src/constants';
+import { PostDiaryRequestDto } from 'src/apis/dto/request/diary';
+import { ResponseDto } from 'src/apis/dto/response';
+import { useNavigate } from 'react-router';
+
 // component: 일기 작성 화면 컴포넌트 //
 export default function DiaryWrite() {
+
+  // state: 쿠키 상태 //
+  const [cookies] = useCookies();
 
   // state: 일기 작성 내용 상태 //
   const [weather, setWeather] = useState<Weather | ''>('');
   const [feeling, setFeeling] = useState<Feeling | ''>('');
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
+
+  // variable: access token //
+  const accessToken = cookies[ACCESS_TOKEN];
+
+  // variable: 오늘 날짜 //
+  const today = dayjs().format('YYYY-MM-DD');
 
   // variable: 날씨 컨텐츠 클래스 //
   const sunContentClass = 
@@ -36,6 +55,54 @@ export default function DiaryWrite() {
   const fogIconClass = 
     weather === '안개' ? 'weather-icon fog-active' : 'weather-icon fog';
 
+  // variable: 기분 컨텐츠 클래스 //
+  const happyContentClass = 
+    feeling === '행복' ? 'content active' : 'content pointer';
+  const funnyContentClass = 
+    feeling === '즐거움' ? 'content active' : 'content pointer';
+  const normalContentClass = 
+    feeling === '보통' ? 'content active' : 'content pointer';
+  const sadContentClass = 
+    feeling === '슬픔' ? 'content active' : 'content pointer';
+  const angryContentClass = 
+    feeling === '분노' ? 'content active' : 'content pointer';
+
+  // variable: 기분 아이콘 클래스 //
+  const happyIconClass = 
+    feeling === '행복' ? 'feeling-icon happy-active' : 'feeling-icon happy';
+  const funnyIconClass = 
+    feeling === '즐거움' ? 'feeling-icon funny-active' : 'feeling-icon funny';
+  const normalIconClass = 
+    feeling === '보통' ? 'feeling-icon normal-active' : 'feeling-icon normal';
+  const sadIconClass = 
+    feeling === '슬픔' ? 'feeling-icon sad-active' : 'feeling-icon sad';
+  const angryIconClass = 
+    feeling === '분노' ? 'feeling-icon angry-active' : 'feeling-icon angry';
+
+  // variable: 일기 작성 가능 여부 //
+  const isActive = weather !== '' && feeling !== '' && title !== '' && content !== '';
+  // variable: 일기 작성 버튼 클래스 //
+  const writeButtonClass = isActive ? 'button middle primary' : 'button middle disable';
+
+  // function: 네비게이터 함수 //
+  const navigator = useNavigate();
+
+  // function: post diary response 처리 함수 //
+  const postDiaryResponse = (responseBody: ResponseDto | null) => {
+    const message = 
+      !responseBody ? '서버에 문제가 있습니다.' :
+      responseBody.code === 'DBE' ? '서버에 문제가 있습니다.' :
+      responseBody.code === 'AF' ? '인증에 실패했습니다.' : '';
+    
+    const isSuccess = responseBody !== null && responseBody.code === 'SU';
+    if (!isSuccess) {
+      alert(message);
+      return;
+    }
+
+    navigator(DIARY_ABSOLUTE_PATH);
+  };
+
   // event handler: 날씨 변경 이벤트 처리 //
   const onWeatherChangeHandler = (weather: Weather) => {
     setWeather(weather);
@@ -57,6 +124,16 @@ export default function DiaryWrite() {
     setContent(content);
   };
 
+  // event handler: 일기 작성 버튼 클릭 이벤트 처리 //
+  const onWriteButtonClickHandler = () => {
+    if (!isActive || !accessToken) return;
+
+    const requestBody: PostDiaryRequestDto = {
+      weather, feeling, title, content
+    };
+    postDiaryRequest(requestBody, accessToken).then(postDiaryResponse);
+  };
+
   // render: 일기 작성 화면 컴포넌트 렌더링 //
   return (
     <div id='diary-write-wrapper'>
@@ -65,7 +142,7 @@ export default function DiaryWrite() {
         <div className='contents-container'>
           <div className='input-row-box'>
             <div className='title'>날짜</div>
-            <div className='content'>2025-03-19</div>
+            <div className='content'>{today}</div>
           </div>
           <div className='input-row-box'>
             <div className='title'>날씨</div>
@@ -87,20 +164,20 @@ export default function DiaryWrite() {
           </div>
           <div className='input-row-box'>
             <div className='title'>기분</div>
-            <div className='content' onClick={() => onFeelingChangeHandler('행복')}>
-              <div className='feeling-icon happy'></div>행복
+            <div className={happyContentClass} onClick={() => onFeelingChangeHandler('행복')}>
+              <div className={happyIconClass}></div>행복
             </div>
-            <div className='content' onClick={() => onFeelingChangeHandler('즐거움')}>
-              <div className='feeling-icon funny'></div>즐거움
+            <div className={funnyContentClass} onClick={() => onFeelingChangeHandler('즐거움')}>
+              <div className={funnyIconClass}></div>즐거움
             </div>
-            <div className='content' onClick={() => onFeelingChangeHandler('보통')}>
-              <div className='feeling-icon normal'></div>보통
+            <div className={normalContentClass} onClick={() => onFeelingChangeHandler('보통')}>
+              <div className={normalIconClass}></div>보통
             </div>
-            <div className='content' onClick={() => onFeelingChangeHandler('슬픔')}>
-              <div className='feeling-icon sad'></div>슬픔
+            <div className={sadContentClass} onClick={() => onFeelingChangeHandler('슬픔')}>
+              <div className={sadIconClass}></div>슬픔
             </div>
-            <div className='content' onClick={() => onFeelingChangeHandler('분노')}>
-              <div className='feeling-icon angry'></div>분노
+            <div className={angryContentClass} onClick={() => onFeelingChangeHandler('분노')}>
+              <div className={angryIconClass}></div>분노
             </div>
           </div>
           <div className='input-column-box'>
@@ -112,7 +189,7 @@ export default function DiaryWrite() {
             <TextEditor content={content} setContent={onContentChangeHandler} />
           </div>
           <div className='button-box'>
-            <div className='button middle disable'>작성 완료</div>
+            <div className={writeButtonClass} onClick={onWriteButtonClickHandler}>작성 완료</div>
           </div>
         </div>
       </div>
