@@ -6,6 +6,8 @@ import { SignInResponseDto } from './dto/response/auth';
 import { PatchDiaryRequestDto, PostDiaryRequestDto } from './dto/request/diary';
 import { GetDiaryResponseDto, GetMyDiaryResponseDto } from './dto/response/diary';
 import { GetSignInUserResponseDto } from './dto/response/user';
+import { PostMemoryRequestDto } from './dto/request/test';
+import { GetMemoryResponseDto } from './dto/response/test';
 
 // variable: URL 상수 //
 const API_DOMAIN = process.env.REACT_APP_API_DOMAIN;
@@ -28,6 +30,11 @@ const DELETE_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/
 const USER_MODULE_URL = `${API_DOMAIN}/api/v1/user`;
 
 const GET_SIGN_IN_USER_URL = `${USER_MODULE_URL}/sign-in`;
+
+const TEST_MODULE_URL = `${API_DOMAIN}/api/v1/test`;
+
+const POST_MEMORY_URL = `${TEST_MODULE_URL}/memory`;
+const GET_MEMORY_URL = `${TEST_MODULE_URL}/memory`;
 
 // function: Authorization Bearer 헤더 //
 const bearerAuthorization = (accessToken: string) => ({ headers: { 'Authorization': `Bearer ${accessToken}` } })
@@ -114,6 +121,22 @@ export const deleteDiaryRequest = async (diaryNumber: number | string, accessTok
 export const getSignInUserRequest = async (accessToken: string) => {
   const responseBody = await axios.get(GET_SIGN_IN_USER_URL, bearerAuthorization(accessToken))
     .then(responseSuccessHandler<GetSignInUserResponseDto>)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: post memory API 요청 함수 //
+export const postMemoryRequest = async (requestBody: PostMemoryRequestDto, accessToken: string) => {
+  const responseBody = await axios.post(POST_MEMORY_URL, requestBody, bearerAuthorization(accessToken))
+    .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: get memory API 요청 함수 //
+export const getMemoryRequest = async (accessToken: string) => {
+  const responseBody = await axios.get(GET_MEMORY_URL, bearerAuthorization(accessToken))
+    .then(responseSuccessHandler<GetMemoryResponseDto>)
     .catch(responseErrorHandler);
   return responseBody;
 };
