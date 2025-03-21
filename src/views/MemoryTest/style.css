@@ -56,3 +56,12 @@
   grid-template-rows: 100px 100px 100px 100px;
   gap: 40px;
 }
+
+#memory-test-wrapper .card-container .reversed-card {
+  background-image: url(src/assets/images/question-mark.png);
+  background-color: rgba(110, 125, 147, 1);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+  cursor: pointer;
+}
