@@ -11,6 +11,7 @@ import DiaryMain from './views/Diary';
 import DiaryWrite from './views/Diary/Write';
 import DiaryDetail from './views/Diary/Detail';
 import DiaryUpdate from './views/Diary/Update';
+import MemoryTest from './views/MemoryTest';
 
 // Router 구성
 // - /auth : 로그인 및 회원가입 페이지
@@ -38,7 +39,7 @@ function App() {
         <Route path={MAIN_PATH} element={<>메인 페이지</>} />
 
         <Route path={MEMORY_TEST_PATH}>
-          <Route index element={<>기억력 검사 페이지</>} />
+          <Route index element={<MemoryTest />} />
           <Route path={MEMORY_TEST_COMPLETE_PATH} element={<>기억력 검사 완료 페이지</>} />
         </Route>
 
@@ -82,3 +83,5 @@ function Index() {
   // render: Root 경로 컴포넌트 렌더링 //
   return null;
 }
+
+

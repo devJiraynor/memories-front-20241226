@@ -1,0 +1,15 @@
+#memory-test-wrapper {
+  margin: 0 auto;
+  width: 1180px;
+}
+
+#memory-test-wrapper .container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  border-radius: 10px;
+  padding: 40px 24px 24px;
+
+  background-color: var(--White);
+}
