@@ -70,18 +70,18 @@
   font-weight: 700;
 }
 
-#memory-test-complete-wrapper .test-result-container {
+.test-result-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-#memory-test-complete-wrapper .test-result-table {
+.test-result-table {
   border-radius: 10px;
   background-color: var(--White);
 }
 
-#memory-test-complete-wrapper .test-result-table>.tr {
+.test-result-table>.tr {
   display: flex;
 
   box-sizing: border-box;
@@ -91,4 +91,42 @@
 
 .test-result-table>.tr:last-child {
   border: none;
+}
+
+.test-result-table>.tr .th,
+.test-result-table>.tr .td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  box-sizing: border-box;
+  border-right: 1px solid var(--Lightmode-Grey3);
+
+  color: var(--Lightmode-Grey);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.test-result-table>.tr .td {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.test-result-table>.tr .sequence {
+  width: 200px;
+}
+
+.test-result-table>.tr .test-date,
+.test-result-table>.tr .measurement-time {
+  width: 380px;
+}
+
+.test-result-table>.tr .gap {
+  width: 220px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
 }
