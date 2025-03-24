@@ -3,6 +3,6 @@ export default interface ConcentrationTest {
   measurementScore: number;
   errorCount: number;
   testDate: string;
-  scoreGap: number;
-  errorGap: number;
+  scoreGap: number | null;
+  errorGap: number | null;
 }
