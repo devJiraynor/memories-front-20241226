@@ -7,6 +7,8 @@ interface ConcentrationTestStore {
 
   increaseMeasurementScore: () => void;
   increaseErrorCount: () => void;
+  init: () => void;
+  reset: () => void;
 }
 
 // function: 집중력 검사 스토어 생성 함수 //
@@ -16,6 +18,8 @@ const useStore = create<ConcentrationTestStore>(set => ({
 
   increaseMeasurementScore: () => set(state => ({ ...state, measurementScore: state.measurementScore + 1 })),
   increaseErrorCount: () => set(state => ({ ...state, errorCount: state.errorCount + 1 })),
+  init: () => set(state => ({ ...state, measurementScore: 0, errorCount: 0 })),
+  reset: () => set(state => ({ ...state, measurementScore: -1, errorCount: -1 })),
 }));
 
 export default useStore;
