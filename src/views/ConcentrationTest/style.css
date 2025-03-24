@@ -50,6 +50,17 @@
   background-color: var(--Beige);
 }
 
+#conc-test-wrapper .test-box .test-container {
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+
+  padding: 20px 0 60px;
+}
+
 #conc-test-wrapper .test-box .result-row {
   display: flex;
   gap: 20px;
@@ -75,3 +86,22 @@
   color: var(--Grey);
 }
 
+#conc-test-wrapper .test-box .rectangle {
+  width: 180px;
+  height: 180px;
+
+  background-image: url(src/assets/images/test-rectangle.png);
+  background-size: 100% 100%;
+
+  cursor: pointer;
+}
+
+#conc-test-wrapper .test-box .star {
+  width: 180px;
+  height: 180px;
+
+  background-image: url(src/assets/images/test-star.png);
+  background-size: 100% 100%;
+
+  cursor: pointer;
+}
