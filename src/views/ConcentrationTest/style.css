@@ -1,9 +1,11 @@
-#conc-test-wrapper {
+#conc-test-wrapper,
+#conc-complete-wrapper {
   margin: 0 auto;
   width: 1180px;
 }
 
-#conc-test-wrapper .container {
+#conc-test-wrapper .container,
+#conc-complete-wrapper .container {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -14,21 +16,24 @@
   background-color: var(--White);
 }
 
-#conc-test-wrapper .description-box {
+#conc-test-wrapper .description-box,
+#conc-complete-wrapper .description-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-#conc-test-wrapper .description-box .title {
+#conc-test-wrapper .description-box .title,
+#conc-complete-wrapper .description-box .title {
   color: var(--Lightmode-Grey);
 
   font-size: 24px;
   font-weight: 700;
 }
 
-#conc-test-wrapper .description-box .description {
+#conc-test-wrapper .description-box .description,
+#conc-complete-wrapper .description-box .description {
   color: var(--Lightmode-Grey);
 
   text-align: center;
@@ -39,7 +44,8 @@
   white-space: pre-wrap;
 }
 
-#conc-test-wrapper .test-box {
+#conc-test-wrapper .test-box,
+#conc-complete-wrapper .test-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,12 +67,14 @@
   padding: 20px 0 60px;
 }
 
-#conc-test-wrapper .test-box .result-row {
+#conc-test-wrapper .test-box .result-row,
+#conc-complete-wrapper .test-box .result-row {
   display: flex;
   gap: 20px;
 }
 
-#conc-test-wrapper .test-box .result-box {
+#conc-test-wrapper .test-box .result-box,
+#conc-complete-wrapper .test-box .result-box {
   display: flex;
   gap: 10px;
 
@@ -74,15 +82,18 @@
   font-weight: 700;
 }
 
-#conc-test-wrapper .test-box .result-box .title {
+#conc-test-wrapper .test-box .result-box .title,
+#conc-complete-wrapper .test-box .result-box .title {
   color: var(--Lightmode-Grey);
 }
 
-#conc-test-wrapper .test-box .result-box .success {
+#conc-test-wrapper .test-box .result-box .success,
+#conc-complete-wrapper .test-box .result-box .success {
   color: var(--Primary);
 }
 
-#conc-test-wrapper .test-box .result-box .error {
+#conc-test-wrapper .test-box .result-box .error,
+#conc-complete-wrapper .test-box .result-box .error {
   color: var(--Grey);
 }
 
