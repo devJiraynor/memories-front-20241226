@@ -34,7 +34,9 @@ const GET_SIGN_IN_USER_URL = `${USER_MODULE_URL}/sign-in`;
 const TEST_MODULE_URL = `${API_DOMAIN}/api/v1/test`;
 
 const POST_MEMORY_URL = `${TEST_MODULE_URL}/memory`;
+const POST_CONCENTRATION_URL = `${TEST_MODULE_URL}/concentration`;
 const GET_MEMORY_URL = `${TEST_MODULE_URL}/memory`;
+const GET_CONCENTRATION_URL = `${TEST_MODULE_URL}/concentration`;
 
 // function: Authorization Bearer 헤더 //
 const bearerAuthorization = (accessToken: string) => ({ headers: { 'Authorization': `Bearer ${accessToken}` } })
