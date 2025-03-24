@@ -7,6 +7,7 @@
 
 :root {
   --White: rgba(255, 255, 255, 1);
+  --Grey: rgba(117, 117, 117, 1);
   --Lightmode-Grey: rgba(64, 64, 64, 1);
   --Lightmode-Grey2: rgba(138, 146, 166, 1);
   --Lightmode-Grey3: rgba(238, 238, 238, 1);

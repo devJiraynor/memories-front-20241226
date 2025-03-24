@@ -34,3 +34,6 @@ export const SNS_ID = 'snsId';
 
 // variable: 기억력 검사 설명 //
 export const MEMORY_DESCRIPTION = '16개의 뒤집혀진 카드의 앞면을 기억하여\n동일한 앞면의 카드 두 개를 연속해서 뒤집어\n모두 앞면으로 돌리면 성공입니다.\n검사 시작부터 모두 돌리는데 까지 걸린 시간을 측정합니다.';
+
+// variable: 집중력 검사 설명 //
+export const CONCENTRATION_DESCRIPTION = '1분 이내에 ■가 0.5초 간 ★로\n20번 변경됩니다.\n■가 ★로 변경되면 ★를 클릭하세요.\n성공한 클릭의 횟수를 기록합니다.';

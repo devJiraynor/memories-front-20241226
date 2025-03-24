@@ -1,0 +1,77 @@
+#conc-test-wrapper {
+  margin: 0 auto;
+  width: 1180px;
+}
+
+#conc-test-wrapper .container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  border-radius: 10px;
+  padding: 40px 24px 24px;
+
+  background-color: var(--White);
+}
+
+#conc-test-wrapper .description-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#conc-test-wrapper .description-box .title {
+  color: var(--Lightmode-Grey);
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#conc-test-wrapper .description-box .description {
+  color: var(--Lightmode-Grey);
+
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+
+  white-space: pre-wrap;
+}
+
+#conc-test-wrapper .test-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  height: 351px;
+
+  background-color: var(--Beige);
+}
+
+#conc-test-wrapper .test-box .result-row {
+  display: flex;
+  gap: 20px;
+}
+
+#conc-test-wrapper .test-box .result-box {
+  display: flex;
+  gap: 10px;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#conc-test-wrapper .test-box .result-box .title {
+  color: var(--Lightmode-Grey);
+}
+
+#conc-test-wrapper .test-box .result-box .success {
+  color: var(--Primary);
+}
+
+#conc-test-wrapper .test-box .result-box .error {
+  color: var(--Grey);
+}
+
