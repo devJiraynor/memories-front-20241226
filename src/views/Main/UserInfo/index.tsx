@@ -4,9 +4,18 @@ import DefaultProfile from 'src/assets/images/default-profile.png';
 import Modal from 'src/components/Modal';
 import InputBox from 'src/components/InputBox';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+import { fileUploadRequest, patchUserRequest } from 'src/apis';
+import { PatchUserRequestDto } from 'src/apis/dto/request/user';
+import { useCookies } from 'react-cookie';
+import { ACCESS_TOKEN } from 'src/constants';
+import { ResponseDto } from 'src/apis/dto/response';
+import { useSignInUser } from 'src/hooks';
 
 // component: 로그인 사용자 정보 수정 컴포넌트 //
 function UserUpdate() {
+
+  // state: cookie 상태 //
+  const [cookies] = useCookies();
 
   // state: 로그인 사용자 정보 //
   const { profileImage, name, gender, age, address, detailAddress } = useSignInUserStore();
@@ -29,12 +38,18 @@ function UserUpdate() {
   // state: 사용자 프로필 이미지 상태 //
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
+  // variable: access token //
+  const accessToken = cookies[ACCESS_TOKEN];
+
   // variable: 프로필 이미지 스타일 //
   const profileImageStyle = { cursor: 'pointer', backgroundImage: `url(${previewProfile ? previewProfile : DefaultProfile})` };
   // variable: 남성 클래스 //
   const manClass = updateGender === 'man' ? 'check-item active' : 'check-item';
   // variable: 여성 클래스 //
   const womanClass = updateGender === 'woman' ? 'check-item active' : 'check-item';
+
+  // function: 로그인 유저 정보 불러오기 함수 //
+  const getSignInUser = useSignInUser();
 
   // function: 다음 포스트 코드 팝업 오픈 함수 //
   const open = useDaumPostcodePopup();
@@ -43,6 +58,22 @@ function UserUpdate() {
   const daumPostCompleteHandler = (data: Address) => {
     const { address } = data;
     setUpdateAddress(address);
+  };
+
+  // function: patch user response 처리 함수 //
+  const patchUserResponse = (responseBody: ResponseDto | null) => {
+    const message =
+      !responseBody ? '서버에 문제가 있습니다.' :
+      responseBody.code === 'DBE' ? '서버에 문제가 있습니다.' : 
+      responseBody.code === 'AF' ? '인증에 실패했습니다.' : '';
+    
+    const isSuccess = responseBody !== null && responseBody.code === 'SU';
+    if (!isSuccess) {
+      alert(message);
+      return;
+    }
+
+    getSignInUser();
   };
 
   // event handler: 프로필 사진 클릭 이벤트 처리 //
@@ -98,7 +129,7 @@ function UserUpdate() {
   };
 
   // event handler: 수정 버튼 클릭 이벤트 처리 //
-  const onUpdateButtonClick = () => {
+  const onUpdateButtonClick = async () => {
     const message = 
       !updateName ? '이름을 입력하세요.' :
       !updateAge ? '나이를 입력하세요.' : 
@@ -109,6 +140,24 @@ function UserUpdate() {
       alert(message);
       return;
     }
+
+    let profileImage: string | null = null;
+    if (profileImageFile) {
+      const formData = new FormData();
+      formData.append('file', profileImageFile);
+      profileImage = await fileUploadRequest(formData);
+    }
+
+    const requestBody: PatchUserRequestDto = {
+      name: updateName, 
+      profileImage, 
+      address: updateAddress, 
+      detailAddress: updateDetailAddress, 
+      gender: updateGender, 
+      age: updateAge ? Number(updateAge) : null 
+    };
+
+    patchUserRequest(requestBody, accessToken).then(patchUserResponse);
 
   };
 

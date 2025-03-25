@@ -8,6 +8,7 @@ import { GetDiaryResponseDto, GetMyDiaryResponseDto } from './dto/response/diary
 import { GetSignInUserResponseDto } from './dto/response/user';
 import { PostConcentrationRequestDto, PostMemoryRequestDto } from './dto/request/test';
 import { GetConcentrationResponseDto, GetMemoryResponseDto, GetRecentlyConcentrationResponseDto, GetRecentlyMemoryResponseDto } from './dto/response/test';
+import { PatchUserRequestDto } from './dto/request/user';
 
 // variable: URL 상수 //
 const API_DOMAIN = process.env.REACT_APP_API_DOMAIN;
@@ -30,6 +31,7 @@ const DELETE_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/
 const USER_MODULE_URL = `${API_DOMAIN}/api/v1/user`;
 
 const GET_SIGN_IN_USER_URL = `${USER_MODULE_URL}/sign-in`;
+const PATCH_USER_URL = `${USER_MODULE_URL}`;
 
 const TEST_MODULE_URL = `${API_DOMAIN}/api/v1/test`;
 
@@ -129,6 +131,14 @@ export const deleteDiaryRequest = async (diaryNumber: number | string, accessTok
 export const getSignInUserRequest = async (accessToken: string) => {
   const responseBody = await axios.get(GET_SIGN_IN_USER_URL, bearerAuthorization(accessToken))
     .then(responseSuccessHandler<GetSignInUserResponseDto>)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: patch user API 요청 함수 //
+export const patchUserRequest = async (requestBody: PatchUserRequestDto, accessToken: string) => {
+  const responseBody = await axios.patch(PATCH_USER_URL, requestBody, bearerAuthorization(accessToken))
+    .then(responseSuccessHandler)
     .catch(responseErrorHandler);
   return responseBody;
 };
