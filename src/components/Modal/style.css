@@ -1,0 +1,11 @@
+#modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  min-width: 1440px;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}

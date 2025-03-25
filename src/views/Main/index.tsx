@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.css';
 import UserInfo from './UserInfo';
+import RecentlyMemory from './RecentlyMemory';
+import RecentlyConcentration from './RecentlyConcentration';
 
 // component: 메인 화면 컴포넌트 //
 export default function Main() {
@@ -9,7 +11,8 @@ export default function Main() {
   return (
     <div id='main-wrapper'>
       <UserInfo />
-      <div className='recently-container'></div>
+      <RecentlyMemory />
+      <RecentlyConcentration />
     </div>
   )
 }

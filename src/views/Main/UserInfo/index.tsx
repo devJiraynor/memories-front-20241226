@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSignInUserStore } from 'src/stores';
 import DefaultProfile from 'src/assets/images/default-profile.png';
+import Modal from 'src/components/Modal';
 
 // component: 로그인 사용자 정보 컴포넌트 //
 export default function UserInfo() {
 
   // state: 로그인 유저 정보 상태 //
   const { name, age, gender, address, detailAddress, profileImage } = useSignInUserStore();
+
+  // state: 수정 모달 오픈 상태 //
+  const [isUpdateOpen, setUpdateOpen] = useState<boolean>(false);
 
   // variable: 프로필 이미지 스타일 //
   const profileImageStyle = { backgroundImage: `url(${profileImage ? profileImage : DefaultProfile})` };
@@ -16,6 +20,11 @@ export default function UserInfo() {
   const ageText = !age ? '' : `${age} 세`;
   // variable: 주소 //
   const addressText = detailAddress ? `${address} ${detailAddress}` : address;
+
+  // event handler: 수정 버튼 클릭 이벤트 처리 //
+  const onUpdateOpenButtonClickHandler = () => {
+    setUpdateOpen(true);
+  };
 
   // render: 로그인 사용자 정보 컴포넌트 렌더링 //
   return (
@@ -39,7 +48,8 @@ export default function UserInfo() {
           <div className='content'>{addressText}</div>
         </div>
       </div>
-      <div className='button second middle'>수정</div>
+      <div className='button second middle' onClick={onUpdateOpenButtonClickHandler}>수정</div>
+      {isUpdateOpen && <Modal />}
     </div>
   )
 }
