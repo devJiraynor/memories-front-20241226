@@ -15,6 +15,7 @@ import MemoryTest from './views/MemoryTest';
 import MemoryTestComplete from './views/MemoryTest/Complete';
 import ConcentrationTest from './views/ConcentrationTest';
 import ConcentrationTestComplete from './views/ConcentrationTest/Complete';
+import Main from './views/Main';
 
 // Router 구성
 // - /auth : 로그인 및 회원가입 페이지
@@ -39,7 +40,7 @@ function App() {
       <Route path={AUTH_PATH} element={<Auth />} />
 
       <Route element={<Layout />}>
-        <Route path={MAIN_PATH} element={<>메인 페이지</>} />
+        <Route path={MAIN_PATH} element={<Main />} />
 
         <Route path={MEMORY_TEST_PATH}>
           <Route index element={<MemoryTest />} />
