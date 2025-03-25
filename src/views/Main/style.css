@@ -119,3 +119,14 @@
 
   background-color: bisque;
 }
+
+#main-wrapper .user-update-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#main-wrapper .user-update-container .profile-image-box {
+  display: flex;
+  justify-content: center;
+}
