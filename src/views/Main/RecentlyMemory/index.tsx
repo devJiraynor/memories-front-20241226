@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router'
-import { getRecentlyMemoryRequest } from 'src/apis';
+import { getRecentlyMemoryRequest, getWayRequest } from 'src/apis';
 import { ResponseDto } from 'src/apis/dto/response';
 import { GetRecentlyMemoryResponseDto } from 'src/apis/dto/response/test';
 import { ACCESS_TOKEN, MEMORY_TEST_ABSOLUTE_PATH } from 'src/constants';
@@ -21,6 +21,10 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
+import Modal from 'src/components/Modal';
+import { GetWayRequestBodyDto } from 'src/apis/dto/request/openai';
+import { GetWayResponseDto } from 'src/apis/dto/response/openai';
+import Way from 'src/components/Way';
 
 // description: ChartJS에서 사용할 요소 등록 //
 ChartJS.register(
@@ -41,6 +45,9 @@ export default function RecentlyMemory() {
 
   // state: 기억력 검사 기록 리스트 상태 //
   const [memoryTests, setMemoryTests] = useState<MemoryTest[]>([]);
+
+  // state: 모달 오픈 상태 //
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   // variable: access token //
   const accessToken = cookies[ACCESS_TOKEN];
@@ -83,6 +90,11 @@ export default function RecentlyMemory() {
     setMemoryTests(memoryTests.reverse());
   };
 
+  // event handler: 방법 버튼 클릭 이벤트 처리 //
+  const onWayClickHandler = () => {
+    setModalOpen(!isModalOpen);
+  };
+
   // event handler: 검사 버튼 클릭 이벤트 처리 //
   const onTestClickHandler = () => {
     navigator(MEMORY_TEST_ABSOLUTE_PATH);
@@ -100,9 +112,14 @@ export default function RecentlyMemory() {
       <div className='recently-top'>
         <div className='recently-title-box'>
           <div className='title'>기억력 검사 기록</div>
-          <div className='info-button'>
+          <div className='info-button' onClick={onWayClickHandler}>
             기억력을 높이는 방법<div className='icon' />
           </div>
+          {isModalOpen && 
+          <Modal title='기억력을 높이는 방법' onClose={onWayClickHandler}>
+            <Way type='기억력' />
+          </Modal>
+          }
         </div>
         <div className='button primary middle' onClick={onTestClickHandler}>검사하러가기</div>
       </div>

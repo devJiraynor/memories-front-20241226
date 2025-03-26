@@ -21,6 +21,8 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
+import Modal from 'src/components/Modal';
+import Way from 'src/components/Way';
 
 // description: ChartJS에서 사용할 요소 등록 //
 ChartJS.register(
@@ -41,6 +43,9 @@ export default function RecentlyConcentration() {
 
   // state: 집중력 검사 기록 리스트 상태 //
   const [concentrationTests, setConcentrationTest] = useState<ConcentrationTest[]>([]);
+
+  // state: 모달 오픈 상태 //
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
   // variable: access token //
   const accessToken = cookies[ACCESS_TOKEN];
@@ -89,6 +94,11 @@ export default function RecentlyConcentration() {
     setConcentrationTest(concentrationTests.reverse());
   };
 
+  // event handler: 방법 버튼 클릭 이벤트 처리 //
+  const onWayClickHandler = () => {
+    setModalOpen(!isModalOpen);
+  };
+
   // event handler: 검사 버튼 클릭 이벤트 처리 //
   const onTestClickHandler = () => {
     navigator(CONCENTRATION_TEST_ABSOLUTE_PATH);
@@ -106,9 +116,14 @@ export default function RecentlyConcentration() {
       <div className='recently-top'>
         <div className='recently-title-box'>
           <div className='title'>집중력 검사 기록</div>
-          <div className='info-button'>
+          <div className='info-button' onClick={onWayClickHandler}>
             집중력을 높이는 방법<div className='icon' />
           </div>
+          {isModalOpen &&
+          <Modal title='집중력을 높이는 방법' onClose={onWayClickHandler}>
+            <Way type='집중력' />
+          </Modal>
+          }
         </div>
         <div className='button primary middle' onClick={onTestClickHandler}>검사하러가기</div>
       </div>
