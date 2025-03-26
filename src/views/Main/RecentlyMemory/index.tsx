@@ -39,7 +39,7 @@ export default function RecentlyMemory() {
   // state: cookie 상태 //
   const [cookies] = useCookies();
 
-  // state: 기억력 검사 기록 리스 상태 //
+  // state: 기억력 검사 기록 리스트 상태 //
   const [memoryTests, setMemoryTests] = useState<MemoryTest[]>([]);
 
   // variable: access token //
@@ -52,7 +52,8 @@ export default function RecentlyMemory() {
       {
         label: '시간(초단위)',
         data: memoryTests.map(test => test.measurementTime),
-        borderColor: 'rgba(0, 132, 255, 0.5)'
+        borderColor: 'rgba(0, 132, 255, 1)',
+        backgroundColor: 'rgba(0, 132, 255, 0.5)'
       }
     ]
   };

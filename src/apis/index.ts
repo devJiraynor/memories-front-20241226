@@ -184,7 +184,7 @@ export const getRecentlyMemoryRequest = async (accessToken: string) => {
 };
 
 // function: get recently concentration API 요청 함수 //
-export const getRecentlyConcentration = async (accessToken: string) => {
+export const getRecentlyConcentrationRequest = async (accessToken: string) => {
   const responseBody = await axios.get(GET_RECENTLY_CONCENTRATION_URL, bearerAuthorization(accessToken))
     .then(responseSuccessHandler<GetRecentlyConcentrationResponseDto>)
     .catch(responseErrorHandler);
