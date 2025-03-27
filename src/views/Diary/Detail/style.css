@@ -149,7 +149,9 @@
   color: var(--Lightmode-Grey);
   font-size: 16px;
   font-weight: 400;
-  line-height: 125%;
+  line-height: 175%;
+
+  white-space: pre-wrap;
 }
 
 #diary-detail-wrapper .sub-container .footer {
