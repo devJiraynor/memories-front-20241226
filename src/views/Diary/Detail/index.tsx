@@ -9,19 +9,27 @@ import { useNavigate, useParams } from 'react-router';
 import { GetDiaryResponseDto, GetEmpathyResponseDto } from 'src/apis/dto/response/diary';
 import { ResponseDto } from 'src/apis/dto/response';
 import { useSignInUserStore } from 'src/stores';
+import { Comment } from 'src/types/interfaces';
+
+// interface: 댓글 컴포넌트 속성 //
+interface CommentItemProps {
+  commentItem: Comment
+}
 
 // component: 댓글 컴포넌트 //
-function Comment() {
+function CommentItem({ commentItem }: CommentItemProps) {
+
+  const { commentWriterId, commentWriteDate, comment } = commentItem;
 
   // render: 댓글 컴포넌트 렌더링 //
   return (
     <div className='comment-box'>
       <div className='title-box'>
-        <div className='title'>qwer1234</div>
+        <div className='title'>{commentWriterId}</div>
         <div className='divider'></div>
-        <div className='write-date'>2025-03-27 09:33:00</div>
+        <div className='write-date'>{commentWriteDate}</div>
       </div>
-      <div className='comment'>안녕하세요</div>
+      <div className='comment'>{comment}</div>
     </div>
   )
 }
@@ -48,6 +56,8 @@ export default function DiaryDetail() {
 
   // state: 공감한 사용자 리스트 상태 //
   const [empathies, setEmpathies] = useState<string[]>([]);
+  // state: 댓글 리스트 상태 //
+  const [comments, setComments] = useState<Comment[]>([]);
 
   // variable: access token //
   const accessToken = cookies[ACCESS_TOKEN];
@@ -231,15 +241,13 @@ export default function DiaryDetail() {
               </div>
               <div className='sub-box'>
                 <div className='icon comment' />
-                0
+                {comments.length}
               </div>
             </div>
             <div className='body'>
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
+              {comments.map((commentItem, index) => 
+              <CommentItem key={index} commentItem={commentItem} />
+              )}
             </div>
             <div className='footer'>
               <textarea />

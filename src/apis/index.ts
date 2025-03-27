@@ -3,8 +3,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { IdCheckRequestDto, SignInRequestDto, SignUpRequestDto } from './dto/request/auth';
 import { ResponseDto } from './dto/response';
 import { SignInResponseDto } from './dto/response/auth';
-import { PatchDiaryRequestDto, PostDiaryRequestDto } from './dto/request/diary';
-import { GetDiaryResponseDto, GetEmpathyResponseDto, GetMyDiaryResponseDto } from './dto/response/diary';
+import { PatchDiaryRequestDto, PostCommentRequestDto, PostDiaryRequestDto } from './dto/request/diary';
+import { GetCommentResponseDto, GetDiaryResponseDto, GetEmpathyResponseDto, GetMyDiaryResponseDto } from './dto/response/diary';
 import { GetSignInUserResponseDto } from './dto/response/user';
 import { PostConcentrationRequestDto, PostMemoryRequestDto } from './dto/request/test';
 import { GetConcentrationResponseDto, GetMemoryResponseDto, GetRecentlyConcentrationResponseDto, GetRecentlyMemoryResponseDto } from './dto/response/test';
@@ -31,6 +31,9 @@ const PATCH_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/$
 const DELETE_DIARY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}`;
 const PUT_EMPATHY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}/empathy`;
 const GET_EMPATHY_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}/empathy`;
+
+const POST_COMMENT_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}/comment`;
+const GET_COMMENT_URL = (diaryNumber: number | string) => `${DIARY_MODULE_URL}/${diaryNumber}/comment`;
 
 
 const USER_MODULE_URL = `${API_DOMAIN}/api/v1/user`;
@@ -148,6 +151,22 @@ export const putEmpathyRequest = async (diaryNumber: number | string, accessToke
 export const getEmpathyRequest = async (diaryNumber: number | string, accessToken: string) => {
   const responseBody = await axios.get(GET_EMPATHY_URL(diaryNumber), bearerAuthorization(accessToken))
     .then(responseSuccessHandler<GetEmpathyResponseDto>)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: post comment API 요청 함수 //
+export const postCommentRequest = async (requestBody: PostCommentRequestDto, diaryNumber: number | string, accessToken: string) => {
+  const responseBody = await axios.post(POST_COMMENT_URL(diaryNumber), requestBody, bearerAuthorization(accessToken))
+    .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+  return responseBody;
+};
+
+// function: get comment API 요청 함수 //
+export const getCommentRequest = async (diaryNumber: number | string, accessToken: string) => {
+  const responseBody = await axios.get(GET_COMMENT_URL(diaryNumber), bearerAuthorization(accessToken))
+    .then(responseSuccessHandler<GetCommentResponseDto>)
     .catch(responseErrorHandler);
   return responseBody;
 };
