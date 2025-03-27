@@ -59,3 +59,120 @@
   justify-content: end;
   gap: 20px;
 }
+
+#diary-detail-wrapper .sub-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#diary-detail-wrapper .sub-container .header {
+  display: flex;
+  gap: 12px;
+}
+
+#diary-detail-wrapper .sub-container .sub-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  width: 80px;
+
+  color: var(--Lightmode-Grey4);
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#diary-detail-wrapper .sub-container .icon {
+  width: 20px;
+  height: 20px;
+
+  background-size: 100% 100%;
+
+  cursor: pointer;
+}
+
+#diary-detail-wrapper .sub-container .icon.empathy {
+  background-image: url(src/assets/images/empathy.png);
+}
+
+#diary-detail-wrapper .sub-container .icon.empathy-empty {
+  background-image: url(src/assets/images/empathy-empty.png);
+}
+
+#diary-detail-wrapper .sub-container .icon.comment {
+  background-image: url(src/assets/images/comment.png);
+  cursor: default;
+}
+
+#diary-detail-wrapper .sub-container .body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#diary-detail-wrapper .comment-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border-bottom: 1px solid var(--Lightmode-Grey3);
+  padding: 12px;
+}
+
+#diary-detail-wrapper .comment-box .title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#diary-detail-wrapper .comment-box .title-box .title {
+  color: var(--Lightmode-Grey2);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#diary-detail-wrapper .comment-box .title-box .divider {
+  align-self: stretch;
+  border-left: 1px solid var(--Lightmode-Grey3);
+}
+
+#diary-detail-wrapper .comment-box .title-box .write-date {
+  color: var(--Lightmode-Grey4);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#diary-detail-wrapper .comment-box .comment {
+  color: var(--Lightmode-Grey);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 125%;
+}
+
+#diary-detail-wrapper .sub-container .footer {
+  display: flex;
+  gap: 12px;
+
+  height: 80px;
+}
+
+#diary-detail-wrapper .sub-container .footer textarea {
+  flex: 1;
+
+  outline: none;
+  resize: none;
+
+  border-radius: 6px;
+  border: 1px solid var(--Lightmode-Grey3);
+  padding: 8px 16px;
+
+  color: var(--Lightmode-Grey);
+
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 175%;
+}

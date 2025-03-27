@@ -2,13 +2,29 @@ import React, { useEffect, useState } from 'react';
 
 import './style.css';
 import { Feeling, Weather } from 'src/types/aliases';
-import { deleteDiaryRequest, getDiaryRequest, getEmpathyRequest } from 'src/apis';
+import { deleteDiaryRequest, getDiaryRequest, getEmpathyRequest, putEmpathyRequest } from 'src/apis';
 import { useCookies } from 'react-cookie';
 import { ACCESS_TOKEN, DIARY_ABSOLUTE_PATH, DIARY_UPDATE_ABSOLUTE_PATH } from 'src/constants';
 import { useNavigate, useParams } from 'react-router';
 import { GetDiaryResponseDto, GetEmpathyResponseDto } from 'src/apis/dto/response/diary';
 import { ResponseDto } from 'src/apis/dto/response';
 import { useSignInUserStore } from 'src/stores';
+
+// component: 댓글 컴포넌트 //
+function Comment() {
+
+  // render: 댓글 컴포넌트 렌더링 //
+  return (
+    <div className='comment-box'>
+      <div className='title-box'>
+        <div className='title'>qwer1234</div>
+        <div className='divider'></div>
+        <div className='write-date'>2025-03-27 09:33:00</div>
+      </div>
+      <div className='comment'>안녕하세요</div>
+    </div>
+  )
+}
 
 // component: 일기 상세 화면 컴포넌트 //
 export default function DiaryDetail() {
@@ -54,6 +70,8 @@ export default function DiaryDetail() {
 
   // variable: 공감 여부 //
   const isEmpathize = empathies.includes(userId);
+  // variable: 공감 클래스 //
+  const empathyClass = isEmpathize ? 'icon empathy' : 'icon empathy-empty';
 
   // function: 네비게이터 함수 //
   const navigator = useNavigate();
@@ -119,6 +137,23 @@ export default function DiaryDetail() {
     navigator(DIARY_ABSOLUTE_PATH);
   };
 
+  // function: put empathy response 처리 함수 //
+  const putEmpathyResponse = (responseBody: ResponseDto | null) => {
+    const message =
+      !responseBody ? '서버에 문제가 있습니다.' :
+      responseBody.code === 'DBE' ? '서버에 문제가 있습니다.' :
+      responseBody.code === 'AF' ? '인증에 실패했습니다.' : '';
+    
+    const isSuccess = responseBody !== null && responseBody.code === 'SU';
+    if (!isSuccess) {
+      alert(message);
+      return;
+    }
+
+    if (!diaryNumber || !accessToken) return;
+    getEmpathyRequest(diaryNumber, accessToken).then(getEmpathyResponse);
+  };
+
   // event handler: 삭제 버튼 클릭 이벤트 처리 //
   const onDeleteClickHandler = () => {
     if (!diaryNumber || !accessToken) return;
@@ -132,6 +167,12 @@ export default function DiaryDetail() {
   const onUpdateClickHandler = () => {
     if (!diaryNumber) return;
     navigator(DIARY_UPDATE_ABSOLUTE_PATH(diaryNumber));
+  };
+
+  // event handler: 공감 버튼 클릭 이벤트 처리 //
+  const onEmpathyClickHandler = () => {
+    if (!diaryNumber || !accessToken) return;
+    putEmpathyRequest(diaryNumber, accessToken).then(putEmpathyResponse);
   };
 
   // effect: 컴포넌트 로드시 실행할 함수 //
@@ -185,13 +226,24 @@ export default function DiaryDetail() {
           <div className='sub-container'>
             <div className='header'>
               <div className='sub-box'>
-                <div className='icon empathy' />
+                <div className={empathyClass} onClick={onEmpathyClickHandler} />
                 {empathies.length}
               </div>
               <div className='sub-box'>
                 <div className='icon comment' />
                 0
               </div>
+            </div>
+            <div className='body'>
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+            </div>
+            <div className='footer'>
+              <textarea />
+              <div className='button second stratch'>작성</div>
             </div>
           </div>
         </div>
